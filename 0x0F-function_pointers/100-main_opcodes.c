@@ -2,15 +2,15 @@
 #include <stdlib.h>
 
 /**
- * main - Prints the opcodes of its main function
- * @argc: number of arguments supplied to the program.
- * @argv: array of pointers to the arguments.
+ * main - Prints the opcodes of itself.
+ * @argc: The number of arguments supplied to the program.
+ * @argv: An array of pointers to the arguments.
  *
- * Return: 0.
+ * Return: Always 0.
  */
 int main(int argc, char *argv[])
 {
-	int b, i;
+	int bytes, index;
 	int (*address)(int, char **) = main;
 	unsigned char opcode;
 
@@ -20,20 +20,20 @@ int main(int argc, char *argv[])
 		exit(1);
 	}
 
-	b = atoi(argv[1]);
+	bytes = atoi(argv[1]);
 
-	if (b < 0)
+	if (bytes < 0)
 	{
 		printf("Error\n");
 		exit(2);
 	}
 
-	for (i = 0; i < b; i++)
+	for (index = 0; index < bytes; index++)
 	{
 		opcode = *(unsigned char *)address;
 		printf("%.2x", opcode);
 
-		if (i == b - 1)
+		if (index == bytes - 1)
 			continue;
 		printf(" ");
 
@@ -43,3 +43,4 @@ int main(int argc, char *argv[])
 	printf("\n");
 
 	return (0);
+}
