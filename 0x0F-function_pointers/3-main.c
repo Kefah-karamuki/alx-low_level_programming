@@ -1,32 +1,35 @@
-#include "3-calc.h"
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include "3-calc.h"
 
 /**
-  * main - ...
-  * @argc: ...
-  * @argv: ...
-  *
-  * Return: ...
-  */
+ * main - performs imple operations and print result
+ * @argc: number of arguments passed
+ * @argv: array of pointers to arguments
+ *
+ * Return: 0
+ */
 int main(int argc, char *argv[])
 {
-	int (*oprt)(int, int);
+	int (*func)(int, int);
+	int num1, num2, a;
 
 	if (argc != 4)
 	{
 		printf("Error\n");
 		exit(98);
 	}
+	num1 = atoi(argv[1]);
+	num2 = atoi(argv[3]);
+	func = get_op_func(argv[2]);
 
-	oprt = get_op_func(argv[2]);
-
-	if (!oprt)
+	if (func == NULL)
 	{
 		printf("Error\n");
 		exit(99);
 	}
 
-	printf("%d\n", oprt(atoi(argv[1]), atoi(argv[3])));
+	a = func(num1, num2);
+	printf("%d\n", a);
 	return (0);
 }
